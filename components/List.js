@@ -1,20 +1,16 @@
 import { FlatList } from 'react-native';
-import ListItem from './ListItem.js';
-import React from 'react';
-import { PropTypes } from 'prop-types';
+import ListItem from './ListItem';
+import React, {useContext} from 'react';
+import { MediaContext } from "../contexts/MediaContext";
 
-const List = (props) => {
-  console.log(props);
+const List = () => {
+  const [media] = useContext(MediaContext);
   return (
     <FlatList
-      data={props.mediaArray}
+      data={media}
       renderItem={({item}) => <ListItem singleMedia={item} />}
     />
   );
 };
-
-List.propTypes = {
-  mediaArray: PropTypes.array,
- };
 
 export default List;
