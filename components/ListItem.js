@@ -1,26 +1,23 @@
 import { Image, Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import React from "react";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 
-const ListItem = ({ singleMedia }) => {
+const ListItem = (props) => {
   return (
     <TouchableOpacity style={styles.flex}>
-      <Image style={styles.image} source={{ uri: item.thumbnails.w160 }} />
+      <Image
+        style={styles.image}
+        source={{ uri: props.singleMedia.thumbnails.w160 }}
+      />
       <View style={styles.text}>
         <Text style={{ fontSize: "1.5em", fontWeight: "bold" }}>
-          {item.title}
+          {props.singleMedia.title}
         </Text>
-        <Text>{item.description}</Text>
+        <Text>{props.singleMedia.description}</Text>
       </View>
     </TouchableOpacity>
   );
 };
-
-ListItem.propTypes = {
-  singleMedia: PropTypes.object
-};
-
-export default ListItem;
 
 const styles = StyleSheet.create({
   flex: {
@@ -44,3 +41,9 @@ const styles = StyleSheet.create({
     margin: 5
   }
 });
+
+ListItem.propTypes = {
+  singleMedia: PropTypes.object
+};
+
+export default ListItem;

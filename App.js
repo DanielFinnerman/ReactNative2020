@@ -58,26 +58,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontSize: "1em"
   },
-  flex: {
-    flexDirection: "row",
-    padding: "5px",
-    marginBottom: 5,
-    backgroundColor: "#aaa",
-    padding: "2px",
-    flex: 1
-  },
-
-  text: {
-    flexShrink: 1,
-    margin: 5
-  },
-
-  image: {
-    flexGrow: 1,
-    minHeight: 160,
-    minWidth: 160,
-    margin: 5
-  }
 });
 
 export default App;
