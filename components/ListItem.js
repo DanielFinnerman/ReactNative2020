@@ -22,7 +22,7 @@ ListItem.propTypes = {
 
 export default ListItem;
 
-const styles1 = StyleSheet.create({
+const styles = StyleSheet.create({
   flex: {
     flexDirection: "row",
     padding: "5px",
