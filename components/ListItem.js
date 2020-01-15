@@ -2,7 +2,7 @@ import { Image, Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import React from "react";
 import PropTypes from "prop-types";
 
-const ListItem = (props) => {
+const ListItem = props => {
   return (
     <TouchableOpacity style={styles.flex}>
       <Image
