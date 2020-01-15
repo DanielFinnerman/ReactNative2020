@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 
+const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
-const  useFetch = (url) => {
+const  getAllMedia = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchUrl = async () => {
     try {
-    const response = await fetch(url);
+    const response = await fetch(apiUrl + 'media/all');
     const json = await response.json();
-    setData(json);
+    const result = await Promise.all(json.files.map(async (item) => {
+      const tnResponse = await fetch(apiUrl + 'media/' + item.file_id);
+      return await tnResponse.json();
+    }));
+    setData(result);
     setLoading(false);
     } catch (e) {
       console.log('error', e.message);
@@ -19,4 +24,4 @@ const  useFetch = (url) => {
   }, []);
   return [data, loading];
 };
-export { useFetch };
+export { getAllMedia };
