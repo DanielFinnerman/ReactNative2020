@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   flex: {
     flexDirection: "row",
     padding: "5px",
-    marginBottom: 5,
+    margin: 5,
     backgroundColor: "#aaa",
     padding: "2px",
     flex: 1
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
 
   text: {
     flexShrink: 1,
-    margin: 5
+    margin: 5,
+    wordBreak: 'break-all',
   },
 
   image: {
