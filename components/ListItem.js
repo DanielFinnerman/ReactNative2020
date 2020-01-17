@@ -2,7 +2,7 @@ import { Image, Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import React from "react";
 import PropTypes from "prop-types";
 
-const ListItem = (props) => {
+const ListItem = props => {
   return (
     <TouchableOpacity style={styles.flex}>
       <Image
@@ -10,7 +10,9 @@ const ListItem = (props) => {
         source={{ uri: props.singleMedia.thumbnails.w160 }}
       />
       <View style={styles.text}>
-        <Text style={{ fontSize: "1.5em", fontWeight: "bold" }}>
+        <Text
+          style={{ fontSize: "1.5em", fontWeight: "bold", color: "#eb7d34" }}
+        >
           {props.singleMedia.title}
         </Text>
         <Text>{props.singleMedia.description}</Text>
@@ -26,7 +28,15 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     backgroundColor: "#aaa",
     padding: "2px",
-    flex: 1
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: "black",
+    height: "80%",
+    width: "80%"
+    /*shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,*/
   },
 
   text: {

@@ -5,7 +5,8 @@ import {
   View,
   FlatList,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from "react-native";
 import List from "./components/List";
 
@@ -44,19 +45,34 @@ const mediaArray = [
 
 const App = () => {
   return (
-    <View>
-      <List mediaArray={mediaArray} />
+    <View style={{ alignItems: "center", justifyContent: "center" }}>
+      <Image
+        style={{
+          height: 160,
+          flexGrow: 1,
+          minHeight: 300,
+          minWidth: 500,
+          margin: 5
+        }}
+        source={{
+          uri:
+            "https://www.fairfaxcounty.gov/news2/wp-content/uploads/2018/01/dog-nose.jpg"
+        }}
+      />
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <List mediaArray={mediaArray} />
+        <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "red" translucent = {true}/>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    fontSize: "1em",
     justifyContent: "center",
-    fontSize: "1em"
+    alignItems: "center"
   },
   flex: {
     flexDirection: "row",
@@ -64,19 +80,24 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     backgroundColor: "#aaa",
     padding: "2px",
-    flex: 1
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   text: {
     flexShrink: 1,
-    margin: 5
+    margin: 5,
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   image: {
     flexGrow: 1,
     minHeight: 160,
     minWidth: 160,
-    margin: 5
+    margin: 5,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 
