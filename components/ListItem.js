@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     height: "80%",
-    width: "80%"
+    width: "80%",
+    margin: "auto"
     /*shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
