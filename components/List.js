@@ -13,7 +13,10 @@ const List = () => {
         <FlatList
             data={media}
             keyExtractor={(item, index) => index.toString}
-            renderItem={({item}) => <ListItem singleMedia={item} />}
+            renderItem={
+                ({item}) => <ListItem
+                  navigation={props.navigation}
+                  singleMedia={item} />}
         />
     );
 };
