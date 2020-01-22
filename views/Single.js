@@ -10,7 +10,7 @@ const Single = (props) => {
   const file = navigation.state.params.file;
   return (
     <View style={styles.container}>
-      <Text>{file.title}</Text>
+      <Text style={styles.title}>{file.title}</Text>
       <Image
         style={styles.image}
         source={{uri: mediaURL + file.filename}}
@@ -32,6 +32,10 @@ const styles = StyleSheet.create({
     height: '80%',
     margin: "auto"
   },
+  title: {
+    fontWeight: "bold",
+    fontSize: "1.4em"
+  }
 });
 
 Single.propTypes = {

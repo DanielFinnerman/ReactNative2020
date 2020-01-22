@@ -1,39 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
+  ActivityIndicator,
   AsyncStorage,
+  StatusBar,
+  View,
 } from 'react-native';
+import PropTypes from "prop-types";
 
-const Login = (props) => { // props is needed for navigation
- const signInAsync = async () => {
-     await AsyncStorage.setItem('userToken', 'abc');
-     props.navigation.navigate('App');
-   };
+const bootstrapAsync = async (props) => {
+  const getToken = async () => {
+    const userToken = await AsyncStorage.getItem('userToken');
+
+    // This will switch to the App screen or Auth screen and this loading
+    // screen will be unmounted and thrown away.
+    console.log('token', userToken);
+    props.navigation.navigate(userToken ? 'App' : 'Auth');
+  }
+  useEffect(() => {
+    getToken();
+  }, []);
+};
+
+const AuthLoading = (props) => {
+  bootstrapAsync(props);
   return (
-    <View style={styles.container}>
-      <Text>Login</Text>
-      <Button title="Sign in!" onPress={
-        () => {
-          signInAsync();
-        }
-      } />
+    <View>
+      <ActivityIndicator />
+      <StatusBar barStyle="default" />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40,
-  },
-});
+AuthLoading.propTypes = {
+  navigation: PropTypes.object,
+};
 
-// proptypes here
-
-export default Login;
+export default AuthLoading;
