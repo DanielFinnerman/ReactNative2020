@@ -6,7 +6,7 @@ const mediaURL = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
 const Single = (props) => {
   const {navigation} = props;
-  console.log('Singel navi', navigation.state);
+  console.log('Single', navigation.state);
   const file = navigation.state.params.file;
   return (
     <View style={styles.container}>
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   image: {
-    borderRadius: 50,
-    width: '100%',
-    height: '90%',
+    width: '80%',
+    height: '80%',
+    margin: "auto"
   },
 });
 
