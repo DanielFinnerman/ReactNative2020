@@ -22,7 +22,7 @@ const TabNavigator = createBottomTabNavigator(
     },
     {
       initialRouteName: 'Home',
-    }
+    },
 );
 
 const Navigator = createStackNavigator(
