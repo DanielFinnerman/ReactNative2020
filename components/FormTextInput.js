@@ -4,25 +4,25 @@ import PropTypes from 'prop-types';
 
 
 const FormTextInput = (props) => {
-  const {style, ...otherProps} = props;
-  return (
-    <TextInput
-      style={[styles.textInput, style]}
-      {...otherProps}
-    />
-  );
+    const {style, ...otherProps} = props;
+    return (
+        <TextInput
+            style={[styles.textInput, style]}
+            {...otherProps}
+        />
+    );
 };
 
 const styles = StyleSheet.create({
-  textInput: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-  },
+    textInput: {
+        height: 40,
+        borderColor: '#ccc',
+        borderWidth: 1,
+    },
 });
 
 FormTextInput.propTypes = {
-  style: PropTypes.object,
+    style: PropTypes.object,
 };
 
 export default FormTextInput;

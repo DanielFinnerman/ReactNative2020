@@ -43,4 +43,20 @@ const login = async (inputs) => {
     }
 }
 
-export {getAllMedia, login};
+const register = async (inputs) => {
+    const fetchOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputs),
+    };
+    try {
+        const response = await fetch(apiUrl + 'users', fetchOptions);
+        return await response.json();
+    } catch (e) {
+        console.log('Error: ', e);
+    }
+}
+
+export {getAllMedia, login, register};
