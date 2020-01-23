@@ -27,6 +27,7 @@ const Profile = (props) => {
             <Text style={{fontSize: '2em'}}>Profile</Text>
             <Text>Id: {user.user_id}</Text>
             <Text>Username: {user.username}</Text>
+            <Text>Full name: {user.full_name}</Text>
             <Text>Email: {user.email}</Text>
 
             <Button title="Logout!" onPress={signOutAsync} />

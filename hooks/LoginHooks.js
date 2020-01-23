@@ -2,6 +2,7 @@ import {useState} from 'react';
 
 const useSignUpForm = () => {
   const [inputs, setInputs] = useState({});
+
   const handleUsernameChange = (text) => {
     setInputs((inputs) =>
       ({
@@ -16,9 +17,27 @@ const useSignUpForm = () => {
         password: text,
       }));
   };
+
+  const handleEmailChange = (text) => {
+    setInputs((inputs) =>
+      ({
+        ...inputs,
+        email: text,
+      }));
+  };
+
+  const handleFullnameChange = (text) => {
+    setInputs((inputs) =>
+      ({
+        ...inputs,
+        full_name: text,
+      }));
+  };
   return {
     handleUsernameChange,
     handlePasswordChange,
+    handleEmailChange,
+    handleFullnameChange,
     inputs,
   };
 };
