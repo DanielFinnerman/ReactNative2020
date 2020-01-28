@@ -17,14 +17,8 @@ const Profile = (props) => {
         props.navigation.navigate('Auth');
     };
     return (
-        <View style={{
-            flex: 1,
-            backgroundColor: '#fff',
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingTop: 40,
-        }}>
-            <Text style={{fontSize: '2em'}}>Profile</Text>
+        <View>
+            <Text>Profile</Text>
             <Text>Id: {user.user_id}</Text>
             <Text>Username: {user.username}</Text>
             <Text>Full name: {user.full_name}</Text>

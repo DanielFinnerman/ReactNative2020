@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, Button, AsyncStorage} from 'react-native';
+import {View, Text, AsyncStorage} from 'react-native';
 import PropTypes from 'prop-types';
 import FormTextInput from '../components/FormTextInput';
 import {login, register} from '../hooks/APIhooks';
 import useSignUpForm from '../hooks/LoginHooks';
+import {Button} from 'native-base';
 
 const Login = (props) => {
   const {handleUsernameChange, handleEmailChange, handleFullnameChange, handlePasswordChange, inputs} = useSignUpForm();
@@ -28,17 +29,12 @@ const Login = (props) => {
     }
   };
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 40,
-      }} >
+    <View>
       {/*Login*/}
       <View>
-        <Text>Login</Text>
+        <Text style={{
+            fontSize: '1.5em'
+        }}>Login</Text>
         <View>
           <FormTextInput
             autoCapitalize='none'
@@ -51,7 +47,7 @@ const Login = (props) => {
             secureTextEntry={true}
             onChangeText={handlePasswordChange}
           />
-          <Button title="Sign in!" onPress={signInAsync} />
+          <Button primary onPress={signInAsync} /><Text> Primary </Text>
         </View>
       </View >
       {/*register*/}
