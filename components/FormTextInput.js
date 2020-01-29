@@ -1,18 +1,21 @@
 import React from 'react';
-import {Input} from 'native-base';
+import {Input, Item} from 'native-base';
 import PropTypes from 'prop-types';
 
 const FormTextInput = (props) => {
-  const {...otherProps} = props;
+  const {success, error,...otherProps} = props;
   return (
-    <Input
+    <Item success={success} error ={error}>
+      <Input
       {...otherProps}
     />
+    </Item>
   );
 };
 
 FormTextInput.propTypes = {
-  style: PropTypes.object,
+  success: PropTypes.bool,
+  error: PropTypes.bool,
 };
 
 export default FormTextInput;
