@@ -80,6 +80,10 @@ const Login = (props) => {
             />
           </Item>
           <Button full onPress={signInAsync}><Text>Sign in!</Text></Button>
+          <Button dark full onPress={() => {
+            setToggleFrom(false);
+          }}>
+            <Text>or Register here</Text></Button>
         </Form>
 
         {/* register form */}

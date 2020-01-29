@@ -1,5 +1,17 @@
 import {useState} from 'react';
 
+const constraints = {
+  username: {
+    presence: {
+      message: 'This field is not required.',
+    },
+    lenght: {
+      minimum: 3,
+      message: 'Your usernamse must be at least 3 charachters',
+    }
+  }
+}
+
 const useSignUpForm = () => {
   const [inputs, setInputs] = useState({});
   const handleUsernameChange = (text) => {
