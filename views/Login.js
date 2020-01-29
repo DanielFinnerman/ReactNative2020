@@ -47,7 +47,7 @@ const Login = (props) => {
             secureTextEntry={true}
             onChangeText={handlePasswordChange}
           />
-          <Button primary onPress={signInAsync} /><Text> Primary </Text>
+          <Button primary onPress={signInAsync} />
         </View>
       </View >
       {/*register*/}
