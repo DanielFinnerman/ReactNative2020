@@ -20,9 +20,13 @@ const ListItem = (props) => {
         <Thumbnail
           square
           source={{uri: mediaURL + props.singleMedia.thumbnails.w160}}
+          style={{
+            borderRadius: 5}}
         />
       </Left>
-      <Body>
+      <Body style={{
+        marginLeft: 70,
+    }}>
         <H3 numberOfLines={1}>{props.singleMedia.title}</H3>
         <Text numberOfLines={1}>{props.singleMedia.description}</Text>
       </Body>

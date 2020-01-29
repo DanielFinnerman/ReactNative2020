@@ -22,7 +22,7 @@ const mediaURL = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
 const Single = (props) => {
   const {navigation} = props;
-  console.log('Singel navi', navigation.state);
+  console.log('Single navi', navigation.state);
   const file = navigation.state.params.file;
   return (
     <Container>
