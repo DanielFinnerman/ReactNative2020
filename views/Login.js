@@ -10,6 +10,8 @@ import {
   Text,
   Item,
   H2,
+  Card,
+  CardItem,
 } from 'native-base';
 import {
   AsyncStorage,
@@ -19,15 +21,34 @@ import {fetchGET, fetchPOST} from '../hooks/APIHooks';
 import FormTextInput from '../components/FormTextInput';
 import useSignUpForm from '../hooks/LoginHooks';
 
+
 const Login = (props) => {
-  const [error, setError] = useState('');
+  const [toggleForm, setToggleForm] = useState(true);
   const {
     handleUsernameChange,
     handlePasswordChange,
     handleEmailChange,
     handleFullnameChange,
+    handleConfirmPasswordChange,
+    validateField,
+    validateOnSend,
+    checkAvail,
     inputs,
+    errors,
+    setErrors,
   } = useSignUpForm();
+
+  const validationProperties = {
+    username: {username: inputs.username},
+    email: {email: inputs.email},
+    full_name: {full_name: inputs.full_name},
+    password: {password: inputs.password},
+    confirmPassword: {
+      password: inputs.password,
+      confirmPassword: inputs.confirmPassword,
+    },
+  };
+
   const signInAsync = async () => {
     try {
       const user = await fetchPOST('login', inputs);
@@ -37,27 +58,46 @@ const Login = (props) => {
       props.navigation.navigate('App');
     } catch (e) {
       console.log('signInAsync error: ' + e.message);
-      setError(e.message);
+      setErrors((errors) =>
+        ({
+          ...errors,
+          fetch: e.message,
+        }));
     }
   };
   const registerAsync = async () => {
+    const regValid = validateOnSend(validationProperties);
+    console.log('reg field errors', errors);
+    if (!regValid) {
+      return;
+    }
+
     try {
-      const result = await fetchPOST('users', inputs);
+      console.log('sen inputs', inputs);
+      const user = inputs;
+      delete user.confirmPassword;
+      const result = await fetchPOST('users', user);
       console.log('register', result);
       signInAsync();
     } catch (e) {
       console.log('registerAsync error: ', e.message);
-      setError(e.message);
+      setErrors((errors) =>
+        ({
+          ...errors,
+          fetch: e.message,
+        }));
     }
   };
+
 
   return (
     <Container>
       <Header>
-        <Body><Title>NativeBase Mayhem</Title></Body>
+        <Body><Title>MyApp</Title></Body>
       </Header>
       <Content>
         {/* login form */}
+        {toggleForm &&
         <Form>
           <Title>
             <H2>Login</H2>
@@ -81,12 +121,15 @@ const Login = (props) => {
           </Item>
           <Button full onPress={signInAsync}><Text>Sign in!</Text></Button>
           <Button dark full onPress={() => {
-            setToggleFrom(false);
+            setToggleForm(false);
           }}>
-            <Text>or Register here</Text></Button>
+            <Text>or Register</Text>
+          </Button>
         </Form>
+        }
 
         {/* register form */}
+        {!toggleForm &&
         <Form>
           <Title>
             <H2>Register</H2>
@@ -97,6 +140,11 @@ const Login = (props) => {
               value={inputs.username}
               placeholder='username'
               onChangeText={handleUsernameChange}
+              onEndEditing={() => {
+                checkAvail();
+                validateField(validationProperties.username);
+              }}
+              error={errors.username}
             />
           </Item>
           <Item>
@@ -105,14 +153,22 @@ const Login = (props) => {
               value={inputs.email}
               placeholder='email'
               onChangeText={handleEmailChange}
+              onEndEditing={() => {
+                validateField(validationProperties.email);
+              }}
+              error={errors.email}
             />
           </Item>
           <Item>
             <FormTextInput
               autoCapitalize='none'
-              value={inputs.fullname}
+              value={inputs.full_name}
               placeholder='fullname'
               onChangeText={handleFullnameChange}
+              onEndEditing={() => {
+                validateField(validationProperties.full_name);
+              }}
+              error={errors.full_name}
             />
           </Item>
           <Item>
@@ -122,13 +178,44 @@ const Login = (props) => {
               placeholder='password'
               secureTextEntry={true}
               onChangeText={handlePasswordChange}
+              onEndEditing={() => {
+                validateField(validationProperties.password);
+              }}
+              error={errors.password}
+            />
+          </Item>
+          <Item>
+            <FormTextInput
+              autoCapitalize='none'
+              value={inputs.confirmPassword}
+              placeholder='confirm password'
+              secureTextEntry={true}
+              onChangeText={handleConfirmPasswordChange}
+              onEndEditing={() => {
+                validateField(validationProperties.confirmPassword);
+              }}
+              error={errors.confirmPassword}
             />
           </Item>
           <Button full onPress={registerAsync}>
             <Text>Register!</Text>
           </Button>
+          <Button dark full onPress={() => {
+            setToggleForm(true);
+          }}>
+            <Text>or Login</Text>
+          </Button>
         </Form>
-        <Text>{error}</Text>
+        }
+        {errors.fetch &&
+        <Card>
+          <CardItem>
+            <Body>
+              <Text>{errors.fetch}</Text>
+            </Body>
+          </CardItem>
+        </Card>
+        }
       </Content>
     </Container>
   );

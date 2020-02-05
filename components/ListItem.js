@@ -20,8 +20,6 @@ const ListItem = (props) => {
         <Thumbnail
           square
           source={{uri: mediaURL + props.singleMedia.thumbnails.w160}}
-          style={{
-            borderRadius: 5}}
         />
       </Left>
       <Body style={{

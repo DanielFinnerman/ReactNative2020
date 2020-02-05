@@ -5,7 +5,7 @@ import {
   StatusBar,
   View,
 } from 'react-native';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const bootstrapAsync = async (props) => {
   const getToken = async () => {
@@ -15,7 +15,7 @@ const bootstrapAsync = async (props) => {
     // screen will be unmounted and thrown away.
     console.log('token', userToken);
     props.navigation.navigate(userToken ? 'App' : 'Auth');
-  }
+  };
   useEffect(() => {
     getToken();
   }, []);
@@ -25,8 +25,8 @@ const AuthLoading = (props) => {
   bootstrapAsync(props);
   return (
     <View>
-      <ActivityIndicator />
-      <StatusBar barStyle="default" />
+      <ActivityIndicator/>
+      <StatusBar barStyle="default"/>
     </View>
   );
 };
