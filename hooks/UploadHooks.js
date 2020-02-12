@@ -28,8 +28,13 @@ const useUploadForm = () => {
     const match = /\.(\w+)$/.exec(filename);
     let type = match ? `image/${match[1]}` : `image`;
     // fix jpg mimetype
-    if (type === 'image/jpg') {
-      type = 'image/jpeg';
+    if (file.type === 'image') {
+      type = match ? `image/${match[1]}` : `image`;
+      if (type === 'image/jpg') {
+        type = 'image/jpeg';
+      }
+    } else {
+      type = match ? `video/${match[1]}` : `video`;
     }
 
     const fd = new FormData();

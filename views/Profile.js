@@ -89,6 +89,18 @@ const Profile = (props) => {
               </Button>
             </Body>
           </CardItem>
+          {/*<CardItem>
+          <Left>
+            </Left>
+            <Right>
+              <Button iconRight transparent onPress={() => {
+                props.navigation.navigate('MyFiles');
+              }}>
+                <Text>My files</Text>
+                <Icon name='document' />
+              </Button>
+            </Right>
+            </CardItem>*/}
         </Card>
       </Content>
     </Container>
