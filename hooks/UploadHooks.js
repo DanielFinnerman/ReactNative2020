@@ -1,12 +1,11 @@
-import {useState, useContext} from 'react';
+import {useState} from 'react';
 import {AsyncStorage} from 'react-native';
-import {MediaContext} from '../contexts/MediaContext';
-import {fetchGET} from './APIHooks';
+import {fetchFormData, getAllMedia} from './APIHooks';
 
 const useUploadForm = () => {
-  const [media, setMedia] = useContext(MediaContext);
   const [inputs, setInputs] = useState({});
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleTitleChange = (text) => {
     setInputs((inputs) =>
@@ -24,12 +23,11 @@ const useUploadForm = () => {
       }));
   };
 
-  const handleUpload = async (file) => {
-    try {
-
+  const handleUpload = async (file, navigation, setMedia) => {
     const filename = file.uri.split('/').pop();
     const match = /\.(\w+)$/.exec(filename);
     let type = match ? `image/${match[1]}` : `image`;
+    // fix jpg mimetype
     if (type === 'image/jpg') {
       type = 'image/jpeg';
     }
@@ -39,26 +37,18 @@ const useUploadForm = () => {
     fd.append('description', inputs.description);
     fd.append('file', {uri: file.uri, name: filename, type});
 
-    const token = await AsyncStorage.getItem('userToken');
+    console.log('FD:', fd);
 
-    const fetchOptions = {
-      method: 'POST',
-      headers: {
-        'x-access-token': token,
-      },
-      body: fd,
-    };
+    try {
+      const token = await AsyncStorage.getItem('userToken');
 
 
-      const result = await fetch('http://media.mw.metropolia.fi/wbma/media', fetchOptions);
-      const json = await result.json();
-      console.log('upload result:', json);
-      if(json.file_id) {
-        const json = await fetchGET('media/all');
-        const result = await Promise.all(json.files.map(async (item) => {
-          return await fetchGET('media', item.file_id);
-        }));
-        setMedia(result);
+      const resp = await fetchFormData('media', fd, token);
+      console.log('upl resp', resp);
+      if (resp.message) {
+        const data = getAllMedia();
+        setMedia(data);
+        setLoading(false);
         navigation.push('Home');
       }
     } catch (e) {
@@ -69,10 +59,13 @@ const useUploadForm = () => {
   return {
     handleTitleChange,
     handleDescriptionChange,
+    handleUpload,
     inputs,
     errors,
+    loading,
     setErrors,
-    handleUpload
+    setInputs,
   };
 };
+
 export default useUploadForm;

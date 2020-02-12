@@ -10,8 +10,8 @@ import {
   H3,
 } from 'native-base';
 import PropTypes from 'prop-types';
+import {mediaURL} from '../constants/urlConst';
 
-const mediaURL = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
 const ListItem = (props) => {
   return (
@@ -22,9 +22,7 @@ const ListItem = (props) => {
           source={{uri: mediaURL + props.singleMedia.thumbnails.w160}}
         />
       </Left>
-      <Body style={{
-        marginLeft: 70,
-    }}>
+      <Body>
         <H3 numberOfLines={1}>{props.singleMedia.title}</H3>
         <Text numberOfLines={1}>{props.singleMedia.description}</Text>
       </Body>

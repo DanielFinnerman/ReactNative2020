@@ -17,7 +17,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {fetchGET, fetchPOST} from '../hooks/APIHooks';
+import {fetchPOST} from '../hooks/APIHooks';
 import FormTextInput from '../components/FormTextInput';
 import useSignUpForm from '../hooks/LoginHooks';
 

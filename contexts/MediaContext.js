@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+/* eslint-disable max-len */
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 
 const MediaContext = React.createContext([{}, () => {}]);
 
 const mediaArray = [];
 
-const MediaProvider = props => {
+const MediaProvider = (props) => {
   const [media, setMedia] = useState(mediaArray);
   return (
     <MediaContext.Provider value={[media, setMedia]}>
@@ -15,7 +16,7 @@ const MediaProvider = props => {
 };
 
 MediaProvider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
-export { MediaContext, MediaProvider };
+export {MediaContext, MediaProvider};
