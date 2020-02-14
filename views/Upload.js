@@ -7,7 +7,6 @@ import {
   Item,
   Spinner,
 } from 'native-base';
-
 import {
   Dimensions,
   Image,

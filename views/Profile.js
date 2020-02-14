@@ -15,6 +15,7 @@ import {fetchGET} from '../hooks/APIHooks';
 import AsyncImage from '../components/AsyncImage';
 import {Dimensions} from 'react-native';
 import {mediaURL} from '../constants/urlConst';
+import MyFiles from '../views/MyFiles';
 
 const deviceHeight = Dimensions.get('window').height;
 
@@ -87,20 +88,14 @@ const Profile = (props) => {
               <Button full onPress={signOutAsync}>
                 <Text>Logout</Text>
               </Button>
-            </Body>
-          </CardItem>
-          {/*<CardItem>
-          <Left>
-            </Left>
-            <Right>
-              <Button iconRight transparent onPress={() => {
+              <Button full iconRight transparent onPress={() => {
                 props.navigation.navigate('MyFiles');
               }}>
                 <Text>My files</Text>
                 <Icon name='document' />
               </Button>
-            </Right>
-            </CardItem>*/}
+            </Body>
+          </CardItem>
         </Card>
       </Content>
     </Container>

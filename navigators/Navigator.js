@@ -68,6 +68,9 @@ const StackNavigator = createStackNavigator(
       Single: {
         screen: Single,
       },
+      MyFiles: {
+        screen: MyFiles,
+      },
       Logout: {
         screen: Login,
       },

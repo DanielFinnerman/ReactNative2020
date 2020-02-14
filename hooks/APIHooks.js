@@ -77,4 +77,13 @@ const getUser = async (id) => {
   }
 };
 
-export {getUser, getAllMedia, fetchGET, fetchPOST, fetchFormData};
+const getUserMedia = async (token) => {
+  console.log('im here', token);
+  const json = await fetchGET('media/user', '', token);
+  const result = await Promise.all(json.map(async (item) => {
+    return await fetchGET('media', item.file_id);
+  }));
+  return result;
+};
+
+export {getUser, getAllMedia, fetchGET, fetchPOST, fetchFormData, getUserMedia};

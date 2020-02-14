@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Content,
@@ -8,22 +8,21 @@ import {
   Body,
   H3,
   Icon,
-  Text,
-} from 'native-base';
-import PropTypes from 'prop-types';
-import AsyncImage from '../components/AsyncImage';
-import {Dimensions} from 'react-native';
-import {mediaURL} from '../constants/urlConst';
-import {getUser} from '../hooks/APIHooks';
-import {Video} from 'expo-av';
+  Text
+} from "native-base";
+import PropTypes from "prop-types";
+import AsyncImage from "../components/AsyncImage";
+import { Dimensions } from "react-native";
+import { mediaURL } from "../constants/urlConst";
+import { getUser } from "../hooks/APIHooks";
+import { Video } from "expo-av";
 
-const deviceHeight = Dimensions.get('window').height;
+const deviceHeight = Dimensions.get("window").height;
 
-console.log('dh', deviceHeight);
+console.log("dh", deviceHeight);
 
-
-const Single = (props) => {
-  const {navigation} = props;
+const Single = props => {
+  const { navigation } = props;
   const [owner, setOwner] = useState({});
   // console.log('Singel navi', navigation.state);
   const file = navigation.state.params.file;
@@ -42,33 +41,37 @@ const Single = (props) => {
       <Content>
         <Card>
           <CardItem>
-            {file.media_type === 'image' &&
+            {file.media_type === "image" && (
               <AsyncImage
                 style={{
-                  width: '100%',
-                  height: deviceHeight / 2,
+                  width: "100%",
+                  height: deviceHeight / 2
                 }}
-                spinnerColor='#777'
-                source={{uri: mediaURL + file.filename}}
+                spinnerColor="#777"
+                source={{ uri: mediaURL + file.filename }}
               />
-            }
-            {file.media_type === 'video' &&
+            )}
+            {file.media_type === "video" && (
               <Video
-                source={{uri: mediaURL + file.filename}}
+                source={{ uri: mediaURL + file.filename }}
                 rate={1.0}
                 volume={1.0}
                 isMuted={false}
                 resizeMode="contain"
-                shouldPlay
+                should
+                Play
                 isLooping
                 useNativeControls
-                style={{width: '100%', height: deviceHeight / 2}}
+                style={{ width: "100%", height: deviceHeight / 2 }}
+                onError={e => {
+                  console.log("video error", e);
+                }}
               />
-            }
+            )}
           </CardItem>
           <CardItem>
             <Left>
-              <Icon name='image' />
+              <Icon name="image" />
               <Body>
                 <H3>{file.title}</H3>
                 <Text>{file.description}</Text>
@@ -77,12 +80,12 @@ const Single = (props) => {
           </CardItem>
           <CardItem>
             <Left>
-              <Icon name='person' />
+              <Icon name="person" />
               <Body>
-                <Text>By {owner.username} ({owner.email})</Text>
-                {owner.full_name &&
-                  <Text>{owner.full_name}</Text>
-                }
+                <Text>
+                  By {owner.username} ({owner.email})
+                </Text>
+                {owner.full_name && <Text>{owner.full_name}</Text>}
               </Body>
             </Left>
           </CardItem>
@@ -94,7 +97,7 @@ const Single = (props) => {
 
 Single.propTypes = {
   navigation: PropTypes.object,
-  file: PropTypes.object,
+  file: PropTypes.object
 };
 
 export default Single;

@@ -34,6 +34,7 @@ const ListItem = (props) => {
         }>
           <Text>View</Text>
         </Button>
+
       </Right>
     </BaseListItem>
   );
